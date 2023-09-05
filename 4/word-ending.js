@@ -1,10 +1,19 @@
-const wordEnding = require('./word-ending.module.js');
+import wordEnding from './word-ending.module.js';
 
-const messageCount = 112;
-const userCount = 1024;
+const input = document.querySelector('.input');
+const btn = document.querySelector('.btn');
+const resultBlock = document.querySelector('.result');
 
-const messageString = wordEnding.getMessageCountString(messageCount);
-const userString = wordEnding.getUserCountString(userCount);
+btn.addEventListener('click', ()=> {
+    // Преобразуем значение инпута в число.
+    const inputValue = parseInt(input.value); 
 
-console.log(messageString);
-console.log(userString);
+    //Проверяем корректно ли введенное число.
+    if (!isNaN(inputValue)) {
+        //Вызываем методы из модуля для вывода сообщения с правильным окончанием.
+        resultBlock.innerHTML = `${wordEnding.getMessageCountString(inputValue)}`;
+        resultBlock.innerHTML += `<br>${wordEnding.getUserCountString(inputValue)}`;
+    } else {
+        resultBlock.innerHTML = "Пожалуйста, введите корректное число.";
+    }
+});

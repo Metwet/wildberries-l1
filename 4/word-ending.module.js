@@ -1,24 +1,38 @@
+// Создаем объект, который будет содержать методы для обработки окончаний слов в зависимости от числа.
 const wordEnding = {
-    getMessageCountString(count) {
-      if (count === 1) {
-        return `${count} сообщение`;
-      } else if (count >= 2 && count <= 4) {
-        return `${count} сообщения`;
-      } else {
-        return `${count} сообщений`;
-      }
-    },
-  
-    getUserCountString(count) {
-      if (count === 1) {
-        return `${count} пользователь`;
-      } else if (count >= 2 && count <= 4) {
-        return `${count} пользователя`;
-      } else {
-        return `${count} пользователей`;
-      }
+  // Метод, определяющий количество сообщений.
+  getMessageCountString(count) {
+    // Проверяем, если count равно 1 или число оканчивается на 1, но не является 11.
+    if (count === 1 || (count % 10 === 1 && count % 100 !== 11)) {
+      return `${count} сообщение`;
+    } 
+    // Если число находится в диапазоне от 2 до 4 или оканчивается на 2, 3, 4, но не на 12, 13, 14. 
+    else if ((count >= 2 && count <= 4) || (count % 10 >= 2 && count % 10 <= 4 && count % 100 !== 12 && count % 100 !== 13 && count % 100 !== 14)) {
+      return `${count} сообщения`;
     }
-  };
+    // Во всех остальных случая выводим "сообщений". 
+    else {
+      return `${count} сообщений`;
+    }
+  },
   
-  export default wordEnding;
+  // Метод, определяющий количество пользователей.
+  getUserCountString(count) {
+    // Проверяем, если count равно 1 или число оканчивается на 1, но не является 11.
+    if (count === 1 || (count % 10 === 1 && count % 100 !== 11)) {
+      return `${count} пользователь`;
+    }
+    // Если число находится в диапазоне от 2 до 4 или оканчивается на 2, 3, 4, но не на 12, 13, 14.
+    else if ((count >= 2 && count <= 4) || (count % 10 >= 2 && count % 10 <= 4 && count % 100 !== 12 && count % 100 !== 13 && count % 100 !== 14)) {
+      return `${count} пользователя`;
+    }
+    // Во всех остальных случая выводим "пользователей". 
+    else {
+      return `${count} пользователей`;
+    }
+  }
+};
+
+// Экспортируем объект.
+export default wordEnding;
   
